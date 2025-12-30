@@ -1,0 +1,144 @@
+/* --- RESET Y BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background-color: #0b0e11;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.phone-container {
+    background-color: #12181f;
+    width: 100%;
+    max-width: 400px; /* Mantiene el formato de celular */
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 80px;
+}
+
+/* --- CABECERA --- */
+.app-header {
+    background-color: #1a252f;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo { color: #00d4ff; font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
+
+.search-box {
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-box input { border: none; width: 100%; outline: none; padding-left: 5px; color: #333; }
+.search-box i { color: #1a252f; }
+
+/* --- CONTENIDO --- */
+.title { padding: 20px 20px 10px; font-size: 1.1rem; color: white; }
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.cat-item {
+    background: #2c3e50;
+    padding: 12px 5px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    font-size: 0.65rem;
+}
+
+.cat-item i { display: block; color: #00d4ff; font-size: 1.2rem; margin-bottom: 5px; }
+
+/* --- TARJETAS DE ABOGADOS (CORREGIDO PARA VERSE LADO A LADO) --- */
+.lawyers-list {
+    display: flex; 
+    flex-direction: row; 
+    overflow-x: auto; /* Permite deslizar si hay más abogados */
+    gap: 15px; 
+    padding: 15px 20px;
+    justify-content: flex-start; /* Alinea al inicio para que el scroll funcione */
+}
+
+.lawyer-card {
+    min-width: 170px; /* Tamaño reducido para que no se vean gigantes */
+    max-width: 170px;
+    background: #2c3e50;
+    border-radius: 20px;
+    padding: 12px;
+    flex-shrink: 0; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.photo-box {
+    width: 100%;
+    height: 130px; /* Altura corregida para que la foto sea proporcional */
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: #12181f;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Centra las fotos de J. Luis y Erika sin estirarlas */
+}
+
+.lawyer-card h3 { 
+    font-size: 0.85rem; 
+    color: white; 
+    margin-bottom: 4px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; /* Evita que el nombre largo rompa el cuadro */
+}
+
+.status { color: #00d4ff; font-size: 0.7rem; margin-bottom: 4px; display: flex; align-items: center; }
+.dot { height: 6px; width: 6px; background: #00d4ff; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+.specialty { color: #bdc3c7; font-size: 0.7rem; margin-bottom: 12px; height: 32px; overflow: hidden; }
+
+.btn-main {
+    background: #00b4d8;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* --- MENÚ INFERIOR --- */
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 400px; 
+    background: #1a252f;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 1px solid #34495e;
+    z-index: 100;
+}
+
+.tab-bar a { text-decoration: none; color: #bdc3c7; text-align: center; font-size: 0.7rem; }
+.tab-bar a.active { color: #00d4ff; }
+.tab-bar i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
+
+/* Ocultar barra de scroll para estética de app */
+.lawyers-list::-webkit-scrollbar {
+    display: none;
+}
