@@ -5,16 +5,20 @@ body {
     background-color: #0b0e11;
     display: flex;
     justify-content: center;
+    align-items: flex-start; 
     min-height: 100vh;
+    margin: 0;
 }
 
 .phone-container {
     background-color: #12181f;
     width: 100%;
-    max-width: 400px; /* Mantiene el formato de celular */
-    min-height: 100vh;
+    max-width: 400px;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
     position: relative;
-    padding-bottom: 80px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
 
 /* --- CABECERA --- */
@@ -38,6 +42,11 @@ body {
 .search-box i { color: #1a252f; }
 
 /* --- CONTENIDO --- */
+.app-content {
+    flex: 1;
+    padding-bottom: 20px;
+}
+
 .title { padding: 20px 20px 10px; font-size: 1.1rem; color: white; }
 
 .categories-grid {
@@ -59,53 +68,56 @@ body {
 
 .cat-item i { display: block; color: #00d4ff; font-size: 1.2rem; margin-bottom: 5px; }
 
-/* --- TARJETAS DE ABOGADOS (CORREGIDO PARA VERSE LADO A LADO) --- */
+/* --- TARJETAS DE ABOGADOS (CORRECCIÓN DE PROPORCIÓN) --- */
 .lawyers-list {
     display: flex; 
     flex-direction: row; 
-    overflow-x: auto; /* Permite deslizar si hay más abogados */
+    overflow-x: auto; 
     gap: 15px; 
     padding: 15px 20px;
-    justify-content: flex-start; /* Alinea al inicio para que el scroll funcione */
+    scroll-snap-type: x mandatory; 
 }
 
 .lawyer-card {
-    min-width: 170px; /* Tamaño reducido para que no se vean gigantes */
-    max-width: 170px;
+    min-width: 180px; /* Un poco más ancha para equilibrar el alto */
+    max-width: 180px;
     background: #2c3e50;
     border-radius: 20px;
     padding: 12px;
     flex-shrink: 0; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    scroll-snap-align: start;
 }
 
 .photo-box {
     width: 100%;
-    height: 130px; /* Altura corregida para que la foto sea proporcional */
+    /* Ajustamos el alto para que sea un retrato 3:4, no un cuadrado aplastado */
+    height: 180px; 
     border-radius: 15px;
     overflow: hidden;
     margin-bottom: 10px;
-    background: #12181f;
+    background: #1a252f;
 }
 
-.photo-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Centra las fotos de J. Luis y Erika sin estirarlas */
+.photo-box img { 
+    width: 100%; 
+    height: 100%; 
+    /* Esta es la propiedad mágica: rellena el espacio sin deformar */
+    object-fit: cover; 
+    /* Centra la parte superior de la imagen (el rostro) */
+    object-position: top center; 
 }
 
 .lawyer-card h3 { 
     font-size: 0.85rem; 
     color: white; 
     margin-bottom: 4px; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; /* Evita que el nombre largo rompa el cuadro */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.status { color: #00d4ff; font-size: 0.7rem; margin-bottom: 4px; display: flex; align-items: center; }
-.dot { height: 6px; width: 6px; background: #00d4ff; border-radius: 50%; display: inline-block; margin-right: 5px; }
-
+.status { color: #00d4ff; font-size: 0.7rem; display: flex; align-items: center; margin-bottom: 5px; }
+.dot { height: 7px; width: 7px; background: #00d4ff; border-radius: 50%; margin-right: 5px; }
 .specialty { color: #bdc3c7; font-size: 0.7rem; margin-bottom: 12px; height: 32px; overflow: hidden; }
 
 .btn-main {
@@ -118,27 +130,26 @@ body {
     font-weight: bold;
     font-size: 0.8rem;
     cursor: pointer;
+    transition: 0.3s;
 }
+
+.btn-main:active { transform: scale(0.95); background: #0096b4; }
 
 /* --- MENÚ INFERIOR --- */
 .tab-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 400px; 
     background: #1a252f;
     display: flex;
     justify-content: space-around;
     padding: 12px 0;
     border-top: 1px solid #34495e;
-    z-index: 100;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    margin-top: auto; 
 }
 
-.tab-bar a { text-decoration: none; color: #bdc3c7; text-align: center; font-size: 0.7rem; }
+.tab-bar a { text-decoration: none; color: #bdc3c7; text-align: center; font-size: 0.7rem; transition: 0.3s; }
 .tab-bar a.active { color: #00d4ff; }
 .tab-bar i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
 
-/* Ocultar barra de scroll para estética de app */
-.lawyers-list::-webkit-scrollbar {
-    display: none;
-}
+.lawyers-list::-webkit-scrollbar { display: none; }
